@@ -1,32 +1,40 @@
 let emoji = [{
   name: "(￣▽￣)",
-  color: "How are you today?"
+  color: "Cool!"
 }, {
   name: "（＞人＜；）",
-  color: "How are you yesterday?"
+  color: "Not Bad ~"
 }, {
   name: "(。・∀・)",
-  color: "How are you on Sunday?"
+  color: "Looks great..."
 }, {
   name: "(❤ ω ❤)",
-  color: "How are you on Sunday?"
+  color: "uhm~ Interesting"
 }, {
   name: "(～﹃～)",
-  color: "How are you in the morning?"
+  color: "Do U like it?"
 }, {
   name: "( $ _ $ )",
-  color: "Did you sleep well last night?"
+  color: "Nice!"
 }];
 let randomIndex;
 let counter = 0;
 let animating = false;
-let trolls = [];
+let troll = [];
+let upon = [];
+let down = [];
 let imageCounter = 0;
 let button;
 
 function preload() {
   for (let i = 0; i <= 4; i++) {
-    trolls[i] = loadImage("assets/troll_" + i + ".jpg")
+    troll[i] = loadImage("assets/troll_" + i + ".jpg")
+  }
+  for (let i = 0; i <= 4; i++) {
+    upon[i] = loadImage("assets/upon_" + i + ".png")
+  }
+  for (let i = 0; i <= 4; i++) {
+    down[i] = loadImage("assets/down_" + i + ".png")
   }
 }
 
@@ -37,9 +45,9 @@ function setup() {
   textFont('Impact')
   imageMode(CENTER);
   frameRate(6);
-  text("click to randomize", 260, 350);
+  text("randomize anime characters face", 150, 350);
   // console.log(trolls);
-button = createButton("click to randomize");
+button = createButton("click me => *_*");
 button.mousePressed(buttonPressed);
 
   // setTimeout(changeBackground, 1000);
@@ -52,14 +60,15 @@ function draw() {
   if (animating == true) {
     // ellipse(random(width), random(height), random(50,200));
     clear();
-    image(trolls[imageCounter], width/2, height/2);
-    if (imageCounter < trolls.length - 1) {
+    image(troll[imageCounter], width/2, height/2);
+    if (imageCounter < troll.length - 1) {
       imageCounter++;
       console.log(imageCounter);
     } else {
       imageCounter = 0;
     }
   }
+
 }
 
 function randomizer() {
@@ -69,16 +78,16 @@ function randomizer() {
       clear();
       randomIndex = int(random(emoji.length));
       //console.log(emoji[randomIndex].name);
-      text(`${emoji[randomIndex].name} Hello!
-${emoji[randomIndex].color}`, 50, 50);
-image(random(trolls), width/2, height/2);
+      text(`${emoji[randomIndex].name} ${emoji[randomIndex].color}`, 50, 50);
+image(random(upon), 350, 330);
+image(random(down), 350, 350);
       // text(emoji[randomIndex].name + "Hello!" + emoji[randomIndex].color, 50, 50);
 
       emoji.splice(randomIndex, 1);
 
     } else {
       background(random(200, 255));
-      text("END", 50, 50);
+      text("THE END", width/2, height/2);
     }
   }
   // function changeBackground(){
